@@ -42,3 +42,23 @@ bool Pallet::putOne()
 {
     return itemCount + 1;
 }
+
+
+
+
+bool Pallet::isEmpty() 
+{
+    if( itemCount == 0){
+        return true;
+    }
+    return false;
+
+}
+bool Pallet::isFull() 
+{
+    if( getRemainingSpace() == 0){
+       return true;
+    }
+    return false;
+
+};
