@@ -1,22 +1,23 @@
+#pragma once
 #include <string>
 #include "IContainer.hpp"
 
 
-#pragma once
+
 
 class Pallet:public IContainer{
     private:
-    int itemCount;
-    std::string itemName;
-    int itemCapacity;
+    int ItemCount;
+    std::string ItemName;
+    int ItemCapacity;
     
     public:
-    Pallet(std::string itemName, int itemCapacity, int itemCount);
+    Pallet(std::string ItemName, int ItemCapacity, int ItemCount);
     Pallet();
-    std::string getitemName();
-    int getitemCount();
+    std::string getItemName();
+    int getItemCount();
     int getRemainingSpace();
-    bool reallocateEmptyPallet(std::string itemName, int itemCapacity);
+    bool reallocateEmptyPallet(std::string ItemName, int ItemCapacity);
     bool takeOne();
     bool putOne();  
 

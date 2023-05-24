@@ -10,7 +10,7 @@
 int main(void){
     Pallet p = Pallet("Brood", 30, 30);
     
-    std::cout << p.getitemName() << std::endl;
+    std::cout << p.getItemName() << std::endl;
 
     Shelf s = Shelf();
 

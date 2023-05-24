@@ -10,19 +10,22 @@ Shelf::Shelf():
 
 bool Shelf::swapPallet(int slot, int slot2)
 {
-    return true;
+    int x = slot;
+    slot = slot2;
+    slot2 = x;
+    return slot, slot2;
 }
 
 bool Shelf::isEmpty()
 {
     for(Pallet& p : this->pallets){
-        if(p.getitemCount() > 0){
+        if(p.getItemCount() > 0){
             return false;
         }
     }
     return true;
     
-    
+
 }
 bool Shelf::isFull()
 {
