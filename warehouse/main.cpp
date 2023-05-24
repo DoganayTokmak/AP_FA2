@@ -8,7 +8,7 @@
 
 
 int main(void){
-    Pallet p = Pallet("Brood", 30, 30);
+    Pallet p = Pallet();
     
     std::cout << p.getItemName() << std::endl;
 

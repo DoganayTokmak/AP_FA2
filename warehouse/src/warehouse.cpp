@@ -23,14 +23,13 @@ bool Warehouse::rearrangeShelf(Shelf& shelf)
     //forkliftcertificate moet hebben
     //Sorteer op volgorde van itemCount
     // Gebruik functie swappallets om 2 pallets te switchen
-    int totalCount = 0;
     for (Employee& e : employees)
     {
         if (e.getForkliftCertificate() == true && !e.getBusy())
         {
-            for(int i = 0; i < 4 - 1; ++i)
+            for(int i = 0; i < 4; ++i)
             {
-                for (int j = 0; j < 4 - i - 1; ++j)
+                for (int j = 0; j < 3 - i; ++j)
                 {
                     if (shelf.pallets [j].getItemCount() > shelf.pallets[j + 1].getItemCount())
                     {
@@ -38,9 +37,11 @@ bool Warehouse::rearrangeShelf(Shelf& shelf)
                     }
                 }
             }
+            return true;//to do als laatste
+
         }
     }   
-    return true;//to do als laatste
+    return false;
 }
 
 

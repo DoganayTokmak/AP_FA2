@@ -10,10 +10,10 @@ Shelf::Shelf():
 
 bool Shelf::swapPallet(int slot, int slot2)
 {
-    int x = slot;
-    slot = slot2;
-    slot2 = x;
-    return slot, slot2;
+    Pallet x = pallets[slot];
+    pallets[slot] = pallets[slot2];
+    pallets[slot2] = x;
+    return true;
 }
 
 bool Shelf::isEmpty()
