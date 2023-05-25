@@ -8,37 +8,47 @@
 int main(void){
     Warehouse warehouse;
     
+    // Maak een Pallet aan en voeg deze toe aan de Shelf
+    Pallet pallet("brood", 100, 100);
+    Pallet pallet1("brood", 100, 100);
+    Pallet pallet2("brood", 100, 100);
+    Pallet pallet3("brood", 100, 100);
+
+    std::cout << pallet.getItemName() << ", " << (pallet.getRemainingSpace()+pallet.getItemCount()) << ", " << pallet.getItemCount() << std::endl;
+    
     // Voeg een Shelf toe aan het magazijn
     Shelf shelf;
+    shelf.pallets = {pallet, pallet1, pallet2, pallet3};
     warehouse.addShelf(shelf);
 
-    // Maak een Pallet aan en voeg deze toe aan de Shelf
-    Pallet pallet("brood", 100, 90);
 
-    // Roep de pickitems-functie aan
-    bool pick = warehouse.pickitems("brood", 50);
+
+    std::cout << "Is full: " <<std::boolalpha << warehouse.shelves[0].isFull() << std::endl;
+    std::cout << "Is empty: " <<std::boolalpha << warehouse.shelves[0].isEmpty() << std::endl;
+
+
 
     // Controleer het resultaat en druk het af
-    if (pick)
-    {
-        std::cout << "50 stuks brood gepakt!" << std::endl;
-    }
-    else
-    {
+    if (warehouse.pickitems("brood", 400)) {
+        std::cout << "400 stuks brood gepakt!" << std::endl;
+    } else {
         std::cout << "Niet genoeg brood beschikbaar." << std::endl;
     }
 
-    return 0;
+    std::cout << "Is full: " <<std::boolalpha << warehouse.shelves[0].isFull() << std::endl;
+    std::cout << "Is empty: " <<std::boolalpha << warehouse.shelves[0].isEmpty() << std::endl;
 
 
-    Pallet p = Pallet("Brood", 100, 90);
-    std::cout << p.getItemName() << " " << p.getItemCount() << std::endl;
 
-    Employee e = Employee("Robin", true);
-    std::cout << e.getName() << std::endl;
+    std::cout << "-----------------------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------------------" << std::endl;
 
-    Shelf s = Shelf();
-    std::cout << s.isEmpty() << std::endl;
+
+    // Employee e = Employee("Robin", true);
+    // std::cout << e.getName() << std::endl;
+
+    // Shelf s = Shelf();
+    // std::cout << s.isEmpty() << std::endl;
 }
 
 
