@@ -8,6 +8,7 @@ Shelf::Shelf():
 
 }
 
+//Swapping pallets
 bool Shelf::swapPallet(int slot, int slot2)
 {
     Pallet x = pallets[slot];
@@ -16,6 +17,7 @@ bool Shelf::swapPallet(int slot, int slot2)
     return true;
 }
 
+//Empty Shelfy
 bool Shelf::isEmpty()
 {
     for(Pallet& p : this->pallets){
@@ -27,11 +29,14 @@ bool Shelf::isEmpty()
     
 
 }
+
+//Shelf is full
 bool Shelf::isFull()
 {
     for(Pallet& p : pallets){
         if(p.getRemainingSpace() == 0)
         return true;
     }
+    return false;
 }
 

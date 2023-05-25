@@ -1,5 +1,6 @@
 #include "include/warehouse.hpp"
 #include <vector>
+#include <iostream>
 
 
 Warehouse::Warehouse() :
@@ -8,25 +9,28 @@ Warehouse::Warehouse() :
 {
 
 }
+
+//Add Employee
 void Warehouse::addEmployee(Employee employee)
 {
     return employees.push_back(employee);
 }
+
+//Add Shelf
 void Warehouse::addShelf(Shelf shelf)
 {
     return shelves.push_back(shelf);
 }
 
-
+//Sort the pallets 
 bool Warehouse::rearrangeShelf(Shelf& shelf)
 {
-    //forkliftcertificate moet hebben
-    //Sorteer op volgorde van itemCount
-    // Gebruik functie swappallets om 2 pallets te switchen
     for (Employee& e : employees)
     {
+        //Check on forkliftcertificate and Employee not busy
         if (e.getForkliftCertificate() == true && !e.getBusy())
         {
+            //Sort on ItemCount
             for(int i = 0; i < 4; ++i)
             {
                 for (int j = 0; j < 3 - i; ++j)
@@ -46,10 +50,16 @@ bool Warehouse::rearrangeShelf(Shelf& shelf)
 
 
 
-
+//Pick item function from a Pallet
 bool Warehouse::pickitems(std::string ItemName, int ItemCount)
-{ //wat nou als er niet genoeg item in de pallets zitten
+{ 
+    //So it is not possible to give negative item
+    if (ItemCount < 0)
+    {
+        return false;
+    }
 
+    //A forloop to count how much there is on a pallet
     int totalCount = 0;
     for(Shelf& s : shelves)
     {
@@ -67,7 +77,9 @@ bool Warehouse::pickitems(std::string ItemName, int ItemCount)
 
     }
 
+    //Count how much there is taken from a Pallet
     int pickedCount = 0;
+
     if (totalCount >= ItemCount)
     {
         for(Shelf& s : shelves)
@@ -78,7 +90,8 @@ bool Warehouse::pickitems(std::string ItemName, int ItemCount)
             
                 if (ItemName == p.getItemName() && p.getItemCount() > 0)
                 {
-                    for(int i = 0; i < p.getItemCount(); i++ )
+                    int count = p.getItemCount();
+                    for(int i = 0; i < count; i++ )
                     {
                         p.takeOne();
                         pickedCount += 1;
@@ -86,7 +99,6 @@ bool Warehouse::pickitems(std::string ItemName, int ItemCount)
                         {
                             return true;
                         }
-
 
                     }
                 }

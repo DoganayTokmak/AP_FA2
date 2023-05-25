@@ -7,24 +7,31 @@ Pallet::Pallet(std::string ItemName, int ItemCapacity, int ItemCount) :
 {
 
 }
+//Pallet default
 Pallet::Pallet() : Pallet("", 0, 0)
 {
     
 }
 
+//Pallet ItemName
 std::string Pallet::getItemName()
 {
     return ItemName;
 }
 
+//Amount of Items
 int Pallet::getItemCount()
 {
     return ItemCount;
 }
+
+//Remainingspace on a pallet
 int Pallet::getRemainingSpace()
 {
     return ItemCapacity - ItemCount;
 }
+
+//Pallet reallocate
 bool Pallet::reallocateEmptyPallet(std::string ItemName, int ItemCapacity)
 {   
     if (ItemCount == 0){
@@ -34,18 +41,32 @@ bool Pallet::reallocateEmptyPallet(std::string ItemName, int ItemCapacity)
     }
     return false;
 }
+
+//Take one product
 bool Pallet::takeOne()
-{
-    return ItemCount - 1;
+{   
+    if (!isEmpty())
+    {
+        ItemCount --;
+        return true;
+    } 
+    return false;
 }
+
+//Put one product
 bool Pallet::putOne()
 {
-    return ItemCount + 1;
+    if (!isFull())
+    {
+        ItemCount ++;
+        return true;
+    }
+    return false;
 }
 
 
 
-
+//Pallet is empty
 bool Pallet::isEmpty() 
 {
     if( ItemCount == 0){
@@ -54,6 +75,8 @@ bool Pallet::isEmpty()
     return false;
 
 }
+
+//Pallet is full
 bool Pallet::isFull() 
 {
     if( getRemainingSpace() == 0){

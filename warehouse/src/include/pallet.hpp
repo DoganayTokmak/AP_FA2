@@ -7,9 +7,10 @@
 
 class Pallet:public IContainer{
     private:
-    int ItemCount;
     std::string ItemName;
     int ItemCapacity;
+    int ItemCount;
+    
     
     public:
     Pallet(std::string ItemName, int ItemCapacity, int ItemCount);
